@@ -19,5 +19,6 @@ steps:
 - script: |
     echo machine github.com login seboste password $(GIT_SAPPER_TOKEN) > ~/.netrc
     go env -w GOPRIVATE=github.com/seboste/*
-    go install github.com/seboste/sapper@latest    
+    go install github.com/seboste/sapper@latest
+    sapper
   displayName: 'install sapper'
