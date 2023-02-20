@@ -25,7 +25,7 @@ steps:
     sapper remote remove sapper-bricks
   displayName: 'install & configure sapper'
 - script: |
-    echo "##vso[task.setvariable variable=BRICK_NAME;]handler-httplib"    
+    echo "##vso[task.setvariable variable=BRICK_NAME;isoutput=true]handler-httplib"    
     echo $(BRICK_NAME)
     echo $(Agent.TempDirectory)/$(BRICK_NAME)
     echo "##vso[task.setvariable variable=SERVICE_DIR;]$(Agent.TempDirectory)/$(BRICK_NAME)"    
