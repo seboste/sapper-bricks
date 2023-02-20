@@ -21,5 +21,10 @@ steps:
     export GOBIN=/usr/local/bin/
     go env -w GOPRIVATE=github.com/seboste/*
     go install github.com/seboste/sapper@latest
-    sapper
-  displayName: 'install sapper'
+    sapper remote add current $PWD --insert=0
+    sapper remote remove sapper-bricks
+  displayName: 'install & configure sapper'
+- script: |
+    sapper remote list
+    sapper brick list
+  displayName: 'test sapper'
