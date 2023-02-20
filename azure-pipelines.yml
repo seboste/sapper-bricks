@@ -25,6 +25,9 @@ steps:
     sapper remote remove sapper-bricks
   displayName: 'install & configure sapper'
 - script: |
-    sapper remote list
-    sapper brick list
-  displayName: 'test sapper'
+    BRICK_NAME=handler-httplib    
+    SERVICE_DIR=$(Agent.TempDirectory)/$(BRICK_NAME)
+    sapper service add $(SERVICE_DIR) -p VERSION=1.0.0
+    sapper brick add $(BRICK_NAME) --service $(SERVICE_DIR)
+    sapper service build $(SERVICE_DIR)    
+  displayName: 'test http handler'
