@@ -6,14 +6,18 @@
 trigger:
 - main
 
+pr:
+- main
+
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
+- task: GoTool@0
+  inputs:
+    version: '1.20.1'
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo machine github.com login seboste password $(GIT_SAPPER_TOKEN) > ~/.netrc
+    go env -w GOPRIVATE=github.com/seboste/*
+    go install github.com/seboste/sapper@latest    
+  displayName: 'install sapper'
