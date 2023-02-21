@@ -48,15 +48,18 @@ steps:
       mkdir -p $(Agent.TempDirectory)/build_logs/${{ brick }}
       mv /tmp/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs/${{ brick }} || true
     displayName: 'copy build logs ${{ brick }}'
+    condition: always()
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Agent.TempDirectory)/build_logs'
     artifactType: 'pipeline'
     artifactName: 'build_logs'
   displayName: 'publish build logs'
+  condition: always()
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Agent.TempDirectory)/services'
     artifactType: 'pipeline'
     artifactName: 'services'
   displayName: 'publish services'
+  condition: always()
