@@ -35,12 +35,14 @@ steps:
       sapper service add $(Agent.TempDirectory)/${{ brick }} -p VERSION=1.0.0
       sapper brick add ${{ brick }} --service $(Agent.TempDirectory)/${{ brick }}
       sapper service build $(Agent.TempDirectory)/${{ brick }}
-    displayName: 'test ${{ brick }}'
+    displayName: 'test ${{ brick }}'    
 - script: |
-    ls /tmp/sapper_build_log_*.log
+    mkdir -p $(Agent.TempDirectory)/build_logs
+    cp $(Agent.TempDirectory)/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs
+  displayName: 'copy build logs'
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '/tmp/sapper_build_log_*.log'
+    targetPath: '$(Agent.TempDirectory)/build_logs'
     artifactType: 'pipeline'
-    artifactName: 'build-log'
+    artifactName: 'build_logs'
   displayName: 'publish build logs'
