@@ -35,4 +35,9 @@ steps:
       sapper service add $(Agent.TempDirectory)/${{ brick }} -p VERSION=1.0.0
       sapper brick add ${{ brick }} --service $(Agent.TempDirectory)/${{ brick }}
       sapper service build $(Agent.TempDirectory)/${{ brick }}
-    displayName: 'test ${{ brick }}'
+    displayName: 'test ${{ brick }}'    
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '/tmp/sapper_build_log_*.log'
+    artifactType: 'pipeline'
+    artifactName: 'build-log'
