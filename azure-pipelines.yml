@@ -32,7 +32,7 @@ steps:
   displayName: 'install & configure sapper'
 - ${{ each brick in parameters.bricks }}:
   - script: |
-      sapper service add $(Agent.TempDirectory)/$(brick) -p VERSION=1.0.0
-      sapper brick add $(brick) --service $(Agent.TempDirectory)/$(brick)
-      sapper service build $(Agent.TempDirectory)/$(brick)
+      sapper service add $(Agent.TempDirectory)/${{ brick }} -p VERSION=1.0.0
+      sapper brick add ${{ brick }} --service $(Agent.TempDirectory)/${{ brick }}
+      sapper service build $(Agent.TempDirectory)/${{ brick }}
     displayName: 'test ${{ brick }}'
