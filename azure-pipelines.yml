@@ -35,17 +35,24 @@ steps:
   displayName: install conan
 - ${{ each brick in parameters.bricks }}:
   - script: |
-      sapper service add $(Agent.TempDirectory)/${{ brick }} -p VERSION=1.0.0
-      sapper brick add ${{ brick }} --service $(Agent.TempDirectory)/${{ brick }}
-      sapper service build $(Agent.TempDirectory)/${{ brick }}
+      mkdir -p $(Agent.TempDirectory)/services
+      sapper service add $(Agent.TempDirectory)/services/${{ brick }} -p VERSION=1.0.0
+      sapper brick add ${{ brick }} --service $(Agent.TempDirectory)/services/${{ brick }}
+      sapper service build $(Agent.TempDirectory)/services/${{ brick }}      
     displayName: 'test ${{ brick }}'    
-- script: |
-    mkdir -p $(Agent.TempDirectory)/build_logs
-    cp /tmp/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs || true
-  displayName: 'copy build logs'
+  - script: |
+      mkdir -p $(Agent.TempDirectory)/build_logs/${{ brick }}
+      mv /tmp/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs/${{ brick }} || true
+    displayName: 'copy build logs ${{ brick }}'
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Agent.TempDirectory)/build_logs'
     artifactType: 'pipeline'
     artifactName: 'build_logs'
   displayName: 'publish build logs'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Agent.TempDirectory)/services'
+    artifactType: 'pipeline'
+    artifactName: 'services'
+  displayName: 'publish services'
