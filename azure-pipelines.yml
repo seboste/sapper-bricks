@@ -33,6 +33,10 @@ steps:
 - script: |
     pip install conan
   displayName: install conan
+- script: |
+    git clone https://github.com/seboste/microservice-essentials.git $(Agent.TempDirectory)/mse
+    conan create $(Agent.TempDirectory)/mse
+  displayName: obtain microservices essentials lib
 - ${{ each brick in parameters.bricks }}:
   - script: |
       mkdir -p $(Agent.TempDirectory)/services
