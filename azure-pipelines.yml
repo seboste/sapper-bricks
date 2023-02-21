@@ -35,7 +35,7 @@ steps:
   displayName: install conan
 - script: |
     git clone https://github.com/seboste/microservice-essentials.git $(Agent.TempDirectory)/mse
-    conan create $(Agent.TempDirectory)/mse
+    conan create -s compiler.libcxx=libstdc++11 $(Agent.TempDirectory)/mse
   displayName: obtain microservices essentials lib
 - ${{ each brick in parameters.bricks }}:
   - script: |
