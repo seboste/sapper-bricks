@@ -38,7 +38,7 @@ steps:
     displayName: 'test ${{ brick }}'    
 - script: |
     mkdir -p $(Agent.TempDirectory)/build_logs
-    cp $(Agent.TempDirectory)/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs
+    cp /tmp/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs || true
   displayName: 'copy build logs'
 - task: PublishPipelineArtifact@1
   inputs:
