@@ -31,7 +31,7 @@ steps:
     sapper remote remove sapper-bricks
   displayName: 'install & configure sapper'
 - script: |
-    pip install conan
+    pip install conan==1.59.0
     conan profile new default --detect
     conan profile update settings.compiler.libcxx=libstdc++11 default
   displayName: install conan
