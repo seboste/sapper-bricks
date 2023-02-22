@@ -54,6 +54,7 @@ steps:
       if [ $? -ne 0 ]; then
         exit 1
       fi
+      rm -rf $(Agent.TempDirectory)/services/${{ brick }}/build/src
     displayName: 'test ${{ brick }}'    
   - script: |
       mkdir -p $(Agent.TempDirectory)/build_logs/${{ brick }}
