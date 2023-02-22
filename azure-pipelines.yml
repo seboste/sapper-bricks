@@ -43,8 +43,17 @@ steps:
   - script: |
       mkdir -p $(Agent.TempDirectory)/services
       sapper service add $(Agent.TempDirectory)/services/${{ brick }} -p VERSION=1.0.0
+      if [ $? -ne 0 ]; then
+        exit 1
+      fi
       sapper brick add ${{ brick }} --service $(Agent.TempDirectory)/services/${{ brick }}
-      sapper service build $(Agent.TempDirectory)/services/${{ brick }}      
+      if [ $? -ne 0 ]; then
+        exit 1
+      fi
+      sapper service build $(Agent.TempDirectory)/services/${{ brick }}
+      if [ $? -ne 0 ]; then
+        exit 1
+      fi
     displayName: 'test ${{ brick }}'    
   - script: |
       mkdir -p $(Agent.TempDirectory)/build_logs/${{ brick }}
