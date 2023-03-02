@@ -17,6 +17,7 @@ parameters:
   type: object
   default:
     - handler-httplib
+    - handler-grpc
 
 steps:
 - task: GoTool@0
