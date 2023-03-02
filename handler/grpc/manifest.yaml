@@ -1,6 +1,6 @@
 ---
 id : handler-grpc
-version : 1.0.0
+version : 0.1.0
 kind: extension
 description : gRPC handler
 dependencies : [ base-hexagonal-skeleton, helper-grpc ]
