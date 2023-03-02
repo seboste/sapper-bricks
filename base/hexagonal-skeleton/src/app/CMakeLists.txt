@@ -7,7 +7,8 @@ target_sources(<<<NAME>>>
 
 target_link_libraries(<<<NAME>>>
     PUBLIC
+#<<<SAPPER SECTION BEGIN APP-DEPENDENCIES>>>
         core
-        adapters
         microservice-essentials::microservice-essentials
+#<<<SAPPER SECTION END APP-DEPENDENCIES>>>
     )
