@@ -2,13 +2,13 @@
 
 #include <ports/model.h>
 #include <string>
+#include <optional>
 
 class Api
 {
 public:
-    Api() = default;
     virtual ~Api() = default;
-
+    
     virtual void SetEntity(const Entity& entity) = 0;
-    virtual Entity GetEntity(const std::string& id) const = 0;
+    virtual std::optional<Entity> GetEntity(const std::string& id) const = 0;
 };
