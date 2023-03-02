@@ -1,5 +1,5 @@
 //<<<SAPPER SECTION BEGIN APPEND MAIN-INCLUDES>>>
-#include <adapters/handler-http/handler-http.h>
+#include <adapters/handler-grpc/handler-grpc.h>
 //<<<SAPPER SECTION END APPEND MAIN-INCLUDES>>>
 
 int main()
@@ -7,7 +7,7 @@ int main()
     ...
 
 //<<<SAPPER SECTION BEGIN APPEND MAIN-ADAPTER-INSTANTIATION>>>
-    HttpHandler handler(core);
+    GrpcHandler handler(core);
 //<<<SAPPER SECTION END APPEND MAIN-ADAPTER-INSTANTIATION>>>
 
     ...

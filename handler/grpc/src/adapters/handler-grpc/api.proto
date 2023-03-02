@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package EntityPackage;
+
+message Entity
+{
+    string id = 1;
+    string string_property =2;
+    int32 int_property = 3;
+}
+
+service EntityService
+{
+    rpc GetEntity(GetEntityRequest) returns (GetEntityResponse);
+    rpc SetEntity(SetEntityRequest) returns (SetEntityResponse);    
+}
+
+message GetEntityRequest
+{
+    string id =1;
+}
+
+message GetEntityResponse
+{
+    Entity entity =1;
+}
+
+message SetEntityRequest
+{
+    Entity entity =1;    
+}
+
+message SetEntityResponse
+{
+}
+
+
+

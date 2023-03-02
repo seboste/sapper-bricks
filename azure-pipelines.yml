@@ -17,6 +17,7 @@ parameters:
   type: object
   default:
     - handler-httplib
+    - handler-grpc
 
 steps:
 - task: GoTool@0
@@ -42,24 +43,24 @@ steps:
 - ${{ each brick in parameters.bricks }}:
   - script: |
       mkdir -p $(Agent.TempDirectory)/services
-      sapper service add $(Agent.TempDirectory)/services/${{ brick }} -p VERSION=1.0.0
+      sapper service add $(Agent.TempDirectory)/services/${{ brick }}-service -p VERSION=1.0.0
       if [ $? -ne 0 ]; then
         exit 1
       fi
-      sapper brick add ${{ brick }} --service $(Agent.TempDirectory)/services/${{ brick }}
+      sapper brick add ${{ brick }} --service $(Agent.TempDirectory)/services/${{ brick }}-service
       if [ $? -ne 0 ]; then
         exit 1
       fi
-      sapper service build $(Agent.TempDirectory)/services/${{ brick }}
+      sapper service build $(Agent.TempDirectory)/services/${{ brick }}-service
       if [ $? -ne 0 ]; then
         exit 1
       fi
-      rm -rf $(Agent.TempDirectory)/services/${{ brick }}/build/src
-    displayName: 'test ${{ brick }}'    
+      rm -rf $(Agent.TempDirectory)/services/${{ brick }}-service/build/src
+    displayName: 'test ${{ brick }}-service'
   - script: |
-      mkdir -p $(Agent.TempDirectory)/build_logs/${{ brick }}
-      mv /tmp/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs/${{ brick }} || true
-    displayName: 'copy build logs ${{ brick }}'
+      mkdir -p $(Agent.TempDirectory)/build_logs/${{ brick }}-service
+      mv /tmp/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs/${{ brick }}-service || true
+    displayName: 'copy build logs ${{ brick }}-service'
     condition: always()
 - task: PublishPipelineArtifact@1
   inputs:

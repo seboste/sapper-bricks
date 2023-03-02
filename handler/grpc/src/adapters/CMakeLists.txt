@@ -1,3 +1,3 @@
 #<<<SAPPER SECTION BEGIN APPEND ADAPTERS-SUBDIRECTORIES>>>
-add_subdirectory(handler-http)
+add_subdirectory(handler-grpc)
 #<<<SAPPER SECTION END APPEND ADAPTERS-SUBDIRECTORIES>>>
