@@ -18,6 +18,7 @@ parameters:
   default:
     - handler-httplib
     - handler-grpc
+    - repo-in-memory
 
 steps:
 - task: GoTool@0
