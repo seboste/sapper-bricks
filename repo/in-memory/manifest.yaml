@@ -1,0 +1,6 @@
+---
+id : repo-in-memory
+version : 0.1.0
+kind: extension
+description : repo that stores entities in a std::map. Intended only for testing purposes because it introduces state.
+dependencies : [ base-hexagonal-skeleton ]
