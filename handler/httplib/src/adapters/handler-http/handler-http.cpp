@@ -79,8 +79,15 @@ void HttpHandler::getEntity(const httplib::Request& request, httplib::Response& 
         mse::RequestHandler("getEntity", mse::Context(mse::ToContextMetadata(request.headers)))
             .Process([&](mse::Context&)
             {
+                const std::string id = extractId(request.path);
+                std::optional<Entity> e_optional = _api.GetEntity(id);
+                if(!e_optional)
+                {
+                    return mse::Status { mse::StatusCode::not_found, std::string("unknown entity with id" ) + id };
+                }
+
                 response.set_content(
-                        to_json(_api.GetEntity(extractId(request.path))).dump(),
+                        to_json(e_optional.value()).dump(),
                         "text/json"
                     );
                 return mse::Status::OK;

@@ -3,4 +3,6 @@ target_sources(ports
     INTERFACE
         api.h
         model.h
+        repo.h
+        notifier.h
     )

@@ -41,10 +41,17 @@ public:
             mse::RequestHandler("GetEntity", mse::Context(mse::ToContextMetadata(context->client_metadata())))
                 .Process([&](mse::Context&)
                 {
-                    const Entity e =  _api.GetEntity(request->id());
+                    std::optional<Entity> e_optional =  _api.GetEntity(request->id());
+                    if(!e_optional)
+                    {
+                        return mse::Status { mse::StatusCode::not_found, std::string("unknown entity with id" ) + request->id() };
+                    }
+
+                    const Entity& e = e_optional.value();                    
                     response->mutable_entity()->set_id(e.id);
                     response->mutable_entity()->set_string_property(e.string_property);
                     response->mutable_entity()->set_int_property(e.int_property);
+                                       
                     return mse::Status::OK;
                 })
             );   
