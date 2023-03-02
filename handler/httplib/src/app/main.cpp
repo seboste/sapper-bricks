@@ -1,5 +1,5 @@
 //<<<SAPPER SECTION BEGIN APPEND MAIN-INCLUDES>>>
-#include <adapters/http-handler/http-handler.h>
+#include <adapters/handler-http/handler-http.h>
 //<<<SAPPER SECTION END APPEND MAIN-INCLUDES>>>
 
 int main()

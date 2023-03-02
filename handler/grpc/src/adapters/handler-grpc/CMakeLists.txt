@@ -38,8 +38,8 @@ target_sources(handler-grpc
     
 target_link_libraries(handler-grpc
     PUBLIC
-        ports    
-        microservice-essentials::microservice-essentials                
+        ports
+        microservice-essentials::microservice-essentials
         protobuf::protobuf
         gRPC::gRPC
     )

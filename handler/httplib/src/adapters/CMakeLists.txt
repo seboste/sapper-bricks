@@ -1,3 +1,3 @@
 #<<<SAPPER SECTION BEGIN APPEND ADAPTERS-SUBDIRECTORIES>>>
-add_subdirectory(http-handler)
+add_subdirectory(handler-http)
 #<<<SAPPER SECTION END APPEND ADAPTERS-SUBDIRECTORIES>>>
