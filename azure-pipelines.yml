@@ -19,6 +19,7 @@ parameters:
     - handler-httplib
     - handler-grpc
     - repo-in-memory
+    - observability-structured-logging
 
 steps:
 - task: GoTool@0
