@@ -14,8 +14,8 @@ int main()
     mse::Context::GetGlobalContext().Insert({   
 //<<<SAPPER SECTION BEGIN MAIN-ENVIRONMENT>>>
 //<<<SAPPER SECTION END MAIN-ENVIRONMENT>>>
-            {"app", mse::getenv_or("APP", "test-grpc") },
-            {"version", mse::getenv_or("VERSION", "1.0.0") }
+            {"app", mse::getenv_or("APP", "<<<NAME>>>") },
+            {"version", mse::getenv_or("VERSION", "<<<VERSION>>>") }
         });
 
 //<<<SAPPER SECTION BEGIN MAIN-INITIALIZATION>>>
