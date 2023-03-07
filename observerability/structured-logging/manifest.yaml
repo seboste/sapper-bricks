@@ -1,0 +1,6 @@
+---
+id : observability-structured-logging
+version : 0.1.0
+kind: extension
+description : JSON logging to standard output  
+dependencies : [ base-hexagonal-skeleton ]
