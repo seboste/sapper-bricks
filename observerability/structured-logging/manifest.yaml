@@ -1,0 +1,9 @@
+---
+id : observability-structured-logging
+version : 0.1.0
+kind: extension
+description : JSON logging to standard output  
+dependencies : [ base-hexagonal-skeleton ]
+parameters :
+  - name : STRUCTURED_LOG_FIELDS
+    default : '"timestamp", "level", "app", "x-b3-traceid", "x-b3-spanid", "message"'

@@ -14,13 +14,19 @@ int main()
     mse::Context::GetGlobalContext().Insert({   
 //<<<SAPPER SECTION BEGIN MAIN-ENVIRONMENT>>>
 //<<<SAPPER SECTION END MAIN-ENVIRONMENT>>>
-            {"app", mse::getenv_or("APP", "test-grpc") },
-            {"version", mse::getenv_or("VERSION", "1.0.0") }
+            {"app", mse::getenv_or("APP", "<<<NAME>>>") },
+            {"version", mse::getenv_or("VERSION", "<<<VERSION>>>") }
         });
 
-//<<<SAPPER SECTION BEGIN MAIN-REQUEST-HOOKS>>>
+//<<<SAPPER SECTION BEGIN MAIN-INITIALIZATION>>>
+//<<<SAPPER SECTION END MAIN-INITIALIZATION>>>
+
+//<<<SAPPER SECTION BEGIN MAIN-REQUEST-HANDLER-HOOKS>>>
     mse::RequestHandler::GloballyWith(mse::ExceptionHandlingRequestHook::Parameters{});
-//<<<SAPPER SECTION END MAIN-REQUEST-HOOKS>>>
+//<<<SAPPER SECTION END MAIN-REQUEST-HANDLER-HOOKS>>>
+
+//<<<SAPPER SECTION BEGIN MAIN-REQUEST-ISSUER-HOOKS>>>
+//<<<SAPPER SECTION END MAIN-REQUEST-ISSUER-HOOKS>>>
     
 //<<<SAPPER SECTION BEGIN MAIN-REPO-INSTANTIATION>>>
     std::unique_ptr<EntityRepo> repo = nullptr;
