@@ -9,7 +9,7 @@ int main()
 
 //<<<SAPPER SECTION BEGIN PREPEND MAIN-INITIALIZATION>>>
     mse::ConsoleLogger logger;
-    mse::StructuredLogger structured_logger(logger);
+    mse::StructuredLogger structured_logger(logger, { <<<STRUCTURED_LOG_FIELDS>>> } );
 //<<<SAPPER SECTION END PREPEND MAIN-INITIALIZATION>>>
 
 //<<<SAPPER SECTION BEGIN PREPEND MAIN-REQUEST-HANDLER-HOOKS>>>
