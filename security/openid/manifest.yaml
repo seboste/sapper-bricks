@@ -1,0 +1,9 @@
+---
+id : security-openid
+version : 0.1.0
+kind: extension
+description : provides configuration for the decentralized authentication protocol OpenID.
+dependencies : [ base-hexagonal-skeleton, testing-catch2 ]
+parameters :
+  - name : OPENID_DEFAULT_URL
+    default : '"https://www.example.com/.well-known/openid-configuration"'
