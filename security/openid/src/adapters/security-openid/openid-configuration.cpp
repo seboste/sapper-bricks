@@ -100,7 +100,7 @@ Configuration OpenID::CreateFromUrl(const std::string& openid_config_url)
     auto resp = client.Get(url.GetWholePath());
     if(resp.error() != httplib::Error::Success)
     {
-        throw std::runtime_error(httplib::to_string(resp.error()));
+        throw std::runtime_error(std::string("requesting openid configuration resulted in error: ") + httplib::to_string(resp.error()));
     }
     if(!resp->status)
     {
