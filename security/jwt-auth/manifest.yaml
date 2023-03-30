@@ -1,0 +1,11 @@
+---
+id : security-jwt-auth
+version : 0.1.0
+kind: extension
+description : provides JWT based authentication. Enables the use of scope based authorization using mse::ClaimCheckerRequestHook. Implemented using cpp-jwt and openssl
+dependencies : [ base-hexagonal-skeleton, testing-catch2, security-openid ]
+parameters :
+  - name : JWT_AUTH_AUDIENCE
+    default : '"https://www.example.com"'
+  - name : JWT_AUTH_REQUIRED_CLAIMS
+    default : '{"scope"}'
