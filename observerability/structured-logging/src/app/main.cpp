@@ -10,7 +10,7 @@ int main()
     {
 //<<<SAPPER SECTION BEGIN PREPEND MAIN-INITIALIZATION>>>
         static mse::ConsoleLogger logger; //make sure that the logger lifetime exceeds the try/catch block
-        static mse::StructuredLogger structured_logger(logger, { <<<STRUCTURED_LOG_FIELDS>>> } );
+        static mse::StructuredLogger structured_logger(logger, <<<STRUCTURED_LOG_FIELDS>>> );
 //<<<SAPPER SECTION END PREPEND MAIN-INITIALIZATION>>>
 
 //<<<SAPPER SECTION BEGIN PREPEND MAIN-REQUEST-HANDLER-HOOKS>>>

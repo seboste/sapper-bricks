@@ -24,13 +24,13 @@ parameters:
       parameters: ""
     - name: observability-structured-logging
       parameters: >
-        -p STRUCTURED_LOG_FIELDS='"level","message"'
+        -p STRUCTURED_LOG_FIELDS='{"level","message"}'
     - name: security-openid
       parameters: >
-        -p OPENID_DEFAULT_URL='"https://www.example.com/.well-known/openid-configuration"'
+        -p OPENID_DEFAULT_URL='https://www.example.com/.well-known/openid-configuration'
     - name: security-jwt-auth
       parameters: >
-        -p OPENID_DEFAULT_URL='"https://www.example.com/.well-known/openid-configuration"' -p JWT_AUTH_AUDIENCE='"https://www.example.com"' -p JWT_AUTH_REQUIRED_CLAIMS='{"scope"}'
+        -p OPENID_DEFAULT_URL='https://www.example.com/.well-known/openid-configuration' -p JWT_AUTH_AUDIENCE='https://www.example.com' -p JWT_AUTH_REQUIRED_CLAIMS='{"scope"}'
     
 steps:
 - task: GoTool@0
