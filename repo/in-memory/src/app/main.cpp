@@ -6,15 +6,14 @@ int main()
 {
     
 //<<<SAPPER SECTION BEGIN REPLACE MAIN-REPO-INSTANTIATION>>>
-    std::unique_ptr<EntityRepo> repo = std::make_unique<InMemoryRepo>();
-
+        std::unique_ptr<EntityRepo> repo = std::make_unique<InMemoryRepo>();
 //<<<SAPPER SECTION END REPLACE MAIN-REPO-INSTANTIATION>>>
 
-    ...
+        ...
 
-    Core core(repo.get(), notifier.get());
+        Core core(repo.get(), notifier.get());
 
-    ...
+        ...
 
     return 0;
 }

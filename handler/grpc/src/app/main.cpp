@@ -4,15 +4,15 @@
 
 int main()
 {
-    ...
+        ...
 
 //<<<SAPPER SECTION BEGIN REPLACE MAIN-HANDLER-INSTANTIATION>>>
-    GrpcHandler handler(core);
+        GrpcHandler handler(core);
 //<<<SAPPER SECTION END REPLACE MAIN-HANDLER-INSTANTIATION>>>
 
-    ...
+        ...
 
-    handler.Handle();
+        handler.Handle();
 
     return 0;
 }
