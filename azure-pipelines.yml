@@ -97,13 +97,12 @@ steps:
     artifactName: 'build_logs'
   displayName: 'publish build logs'
   condition: always()
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Agent.TempDirectory)/test_reports'
-    artifactType: 'pipeline'
-    artifactName: 'test_reports'
-  displayName: 'publish test reports'
+- task: PublishTestResults@2
   condition: always()
+  displayName: 'publish test results'
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '$(Agent.TempDirectory)/test_reports/**/test_report.xml'
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Agent.TempDirectory)/services'
