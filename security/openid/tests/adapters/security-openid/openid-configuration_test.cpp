@@ -52,7 +52,7 @@ SCENARIO( "OpenID Configuration", "[security][openid]" )
       
       AND_THEN("some unset values are nullopt")
       {
-        REQUIRE(config.service_documentation != std::nullopt);
+        REQUIRE(config.service_documentation == std::nullopt);
       }
     }
   }
