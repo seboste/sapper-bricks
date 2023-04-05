@@ -1,0 +1,6 @@
+#<<<SAPPER SECTION BEGIN APPEND CMAKE-SUBDIRECTORIES>>>
+option(BUILD_TESTING "build the tests" ON)
+if(BUILD_TESTING)    
+    add_subdirectory (tests)
+endif()
+#<<<SAPPER SECTION END APPEND CMAKE-SUBDIRECTORIES>>>

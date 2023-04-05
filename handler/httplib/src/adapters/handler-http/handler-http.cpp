@@ -75,37 +75,55 @@ void HttpHandler::Stop()
 
 void HttpHandler::getEntity(const httplib::Request& request, httplib::Response& response)
 {
-    response.status = mse::ToHttpStatusCode(
-        mse::RequestHandler("getEntity", mse::Context(mse::ToContextMetadata(request.headers)))
-            .Process([&](mse::Context&)
+    mse::Status status = mse::RequestHandler("getEntity", mse::Context(mse::ToContextMetadata(request.headers)))
+        .Process([&](mse::Context&)
+        {
+            const std::string id = extractId(request.path);
+            std::optional<Entity> e_optional = _api.GetEntity(id);
+            if(!e_optional)
             {
-                const std::string id = extractId(request.path);
-                std::optional<Entity> e_optional = _api.GetEntity(id);
-                if(!e_optional)
-                {
-                    return mse::Status { mse::StatusCode::not_found, std::string("unknown entity with id" ) + id };
-                }
+                
+                return mse::Status { mse::StatusCode::not_found, std::string("unknown entity with id" ) + id };
+            }
 
-                response.set_content(
-                        to_json(e_optional.value()).dump(),
-                        "text/json"
-                    );
-                return mse::Status::OK;
-            })
-        .code);    
+            response.set_content(
+                    to_json(e_optional.value()).dump(),
+                    "text/json"
+                );
+            return mse::Status::OK;
+        });
+    response.status = mse::ToHttpStatusCode(status.code);
+    if(status.code != mse::StatusCode::ok)
+    {
+        response.body = status.details;
+    }
 }
 
 void HttpHandler::setEntity(const httplib::Request& request, httplib::Response& response)
-{
-    response.status = mse::ToHttpStatusCode(
-        mse::RequestHandler("setEntity", mse::Context(mse::ToContextMetadata(request.headers)))
-            .Process([&](mse::Context&)
+{    
+    mse::Status status = mse::RequestHandler("setEntity", mse::Context(mse::ToContextMetadata(request.headers)))
+        .Process([&](mse::Context&)
+        {
+            Entity e;
+            try
             {
-                Entity e;
                 from_json(json::parse(request.body), e);
-                e.id = extractId(request.path);
-                _api.SetEntity(e);                    
-                return mse::Status::OK;
-            })
-        .code);
+            }                
+            catch(const json::exception& error)
+            {
+                throw std::invalid_argument(error.what());                
+            }            
+            if(e.id != extractId(request.path))
+            {
+                throw std::invalid_argument("inconsistent id");
+            }
+            
+            _api.SetEntity(e);
+            return mse::Status::OK;
+        });        
+    response.status = mse::ToHttpStatusCode(status.code);
+    if(status.code != mse::StatusCode::ok)
+    {
+        response.body = status.details;
+    }
 }

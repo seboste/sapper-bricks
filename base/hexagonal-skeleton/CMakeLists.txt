@@ -8,12 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR} ${CMAKE_PREFIX_PATH})
 
-option(BUILD_TESTING "build the tests" OFF)
-
 find_package(microservice-essentials REQUIRED)
 
+#<<<SAPPER SECTION BEGIN CMAKE-SUBDIRECTORIES>>>
 add_subdirectory (src)
-
-if(BUILD_TESTING)    
-    add_subdirectory (tests)
-endif()
+#<<<SAPPER SECTION END CMAKE-SUBDIRECTORIES>>>

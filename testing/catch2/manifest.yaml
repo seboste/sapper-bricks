@@ -1,0 +1,6 @@
+---
+id : testing-catch2
+version : 0.1.0
+kind: extension
+description : unit tests with catch2.
+dependencies : [ base-hexagonal-skeleton ]
