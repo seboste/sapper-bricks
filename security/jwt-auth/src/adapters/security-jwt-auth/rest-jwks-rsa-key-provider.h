@@ -3,6 +3,7 @@
 #include <functional>
 #include <map>
 #include <memory>
+#include <shared_mutex>
 #include <string>
 
 /**
@@ -24,10 +25,16 @@ public:
     std::string operator()(const std::string& key_id) const;
 private:    
 
+    struct Cache
+    {
+        std::map<std::string, std::string> data;    //kid => PEM RSA Key
+        std::shared_mutex mutex;    //enables exclusive write and shared read to the cache
+    };
+
     void updateKeyCache() const;
 
     //share a single cache between multiple copies of this instance (Same jwks_uri => same values => same cache)
-    std::shared_ptr<std::map<std::string, std::string>> _key_cache;
+    std::shared_ptr<Cache> _key_cache;
 
     std::function<std::string()> _jwks_provider;
     bool _throw_on_error;

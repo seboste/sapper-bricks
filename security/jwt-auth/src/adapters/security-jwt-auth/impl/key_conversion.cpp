@@ -77,9 +77,29 @@ std::vector<jwt_auth_impl::RS256Key> jwt_auth_impl::parse_RS256Keys(const std::s
     {
         for(const auto& key : j["keys"])
         {
-            if(key["use"] != "sig" && key["key_ops"] != "sign") { continue; }            
-            if(key["kty"] != "RSA") { continue; }
+            if(!(
+                (key.contains("use") && key["use"].is_string() && key["use"] == "sig") ||
+                (key.contains("key_ops") && key["key_ops"].is_string() && (key["key_ops"] == "sign" || key["key_ops"] == "verify"))
+            ))
+            {
+                continue;
+            }
 
+            
+            if(!(key.contains("kty") && key["kty"].is_string() && key["kty"] == "RSA"))
+            { 
+                continue; 
+            }
+
+            if(!(
+                (key.contains("kid") && key["kid"].is_string()) &&
+                (key.contains("n") && key["n"].is_string()) &&
+                (key.contains("e") && key["e"].is_string()) 
+            ))
+            {
+                continue;
+            }
+            
             jwt_auth_impl::RS256Key k {
                 key["kid"],
                 key["n"],

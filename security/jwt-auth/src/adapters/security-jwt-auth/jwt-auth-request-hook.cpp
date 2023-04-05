@@ -67,10 +67,10 @@ JwtAuthRequestHook::Parameters JwtAuthRequestHook::RS256Parameters(const Paramet
     return p;
 }
 
-JwtAuthRequestHook::Parameters JwtAuthRequestHook::SH256Parameters(const std::string& private_key, const std::string& issuer, const std::string& audience, const std::vector<std::string>& required_claims)
+JwtAuthRequestHook::Parameters JwtAuthRequestHook::HS256Parameters(const std::string& private_key, const std::string& issuer, const std::string& audience, const std::vector<std::string>& required_claims)
 {
     Parameters p;
-    p.key_provider["SH256"] = [private_key](const std::string&)->std::string { return private_key;};
+    p.key_provider["HS256"] = [private_key](const std::string&)->std::string { return private_key;};
     p.issuer = issuer;
     p.audience = audience;
     p.required_claims = required_claims;

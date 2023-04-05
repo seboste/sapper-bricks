@@ -16,7 +16,7 @@ public:
     struct Parameters
     {
         typedef std::function<std::string(const std::string& key_id)> KeyProvider; //key_id gives a hint, which key to return. It can be empty. Needs to return an empty string if the requested key is not available.
-        std::map<std::string, KeyProvider> key_provider;    //maps an algorithm (e.g. SH256, RS256) to a provider for the required key. See https://github.com/arun11299/cpp-jwt for a list of supported algorithms.
+        std::map<std::string, KeyProvider> key_provider;    //maps an algorithm (e.g. HS256, RS256) to a provider for the required key. See https://github.com/arun11299/cpp-jwt for a list of supported algorithms.
         std::string issuer = "";                            //token's 'iss' claim needs to match this string. Can be found in the openid configuration.
         std::string audience = "";                          //token's 'aud' claim needs to match this string. Defined by the application.
         std::vector<std::string> required_claims;           //claims that must be available in the token. They will be automatically be stored in the request's context.
@@ -29,8 +29,8 @@ public:
         mse::AutoRequestHookParameterRegistration<JwtAuthRequestHook::Parameters, JwtAuthRequestHook> auto_registration;
     };
 
-    static Parameters RS256Parameters(const Parameters::KeyProvider& public_key_provider, const std::string& issuer, const std::string& audience, const std::vector<std::string>& required_claims = {""} );
-    static Parameters SH256Parameters(const std::string& private_key, const std::string& issuer, const std::string& audience, const std::vector<std::string>& required_claims = {""} );
+    static Parameters RS256Parameters(const Parameters::KeyProvider& public_key_provider, const std::string& issuer, const std::string& audience, const std::vector<std::string>& required_claims = {} );
+    static Parameters HS256Parameters(const std::string& private_key, const std::string& issuer, const std::string& audience, const std::vector<std::string>& required_claims = {} );
 
 
     JwtAuthRequestHook(const Parameters& parameters);

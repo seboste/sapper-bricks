@@ -6,6 +6,7 @@
 #include <microservice-essentials/utilities/url.h>
 #include <microservice-essentials/cross-cutting-concerns/error-forwarding-request-hook.h>
 #include <exception>
+#include <mutex>
 
 namespace
 {
@@ -38,25 +39,44 @@ RestJwksRSAKeyProvider::RestJwksRSAKeyProvider(const std::string& jwks_uri, bool
 RestJwksRSAKeyProvider::RestJwksRSAKeyProvider(std::function<std::string()> jwks_provider, bool throw_on_error)
     : _jwks_provider(jwks_provider)
     , _throw_on_error(throw_on_error)
-    , _key_cache(std::make_shared<std::map<std::string, std::string>>())
+    , _key_cache(std::make_shared<Cache>())
 {
     updateKeyCache();
 }
 
 std::string RestJwksRSAKeyProvider::operator()(const std::string& key_id) const
 {
-    auto cit = _key_cache->find(key_id);
-    if(cit == _key_cache->end())
     {
-        updateKeyCache();
-        
-        cit = _key_cache->find(key_id);
-        if(cit == _key_cache->end())
+        //1. try with a shared lock for read only access
+        std::shared_lock<std::shared_mutex> shared_lock(_key_cache->mutex);        
+        if(auto cit = _key_cache->data.find(key_id); cit != _key_cache->data.end())
         {
-            return "";
+            return cit->second;
         }
     }
-    return cit->second;    
+
+    //not found in cache
+
+    {        
+        //2. now try again with an exclusive access (chances are high that it works this time
+        //because we only end up here if it's not in the cache. Then maybe some other thread 
+        //is updating the cache right now until this thread can enter the critical section exclusively)
+        std::unique_lock<std::shared_mutex> exclusive_lock(_key_cache->mutex);        
+        if(auto cit = _key_cache->data.find(key_id); cit != _key_cache->data.end())
+        {
+            return cit->second;
+        }
+
+        updateKeyCache();
+        
+        if(auto cit = _key_cache->data.find(key_id); cit != _key_cache->data.end())
+        {
+            return cit->second;
+        }
+    }
+
+    //still not found
+    return "";
 };
 
 void RestJwksRSAKeyProvider::updateKeyCache() const
@@ -69,7 +89,7 @@ void RestJwksRSAKeyProvider::updateKeyCache() const
         {
             throw std::runtime_error("RestJwksRSAKeyProvider: no keys found");
         }
-        *_key_cache = keys;
+        _key_cache->data = keys;
     }
     catch(const std::exception& e)
     {        
