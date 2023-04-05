@@ -18,19 +18,28 @@ parameters:
   default:
     - name: handler-httplib
       parameters: ""
+      run_tests: false
     - name: handler-grpc
       parameters: ""
+      run_tests: false
     - name: repo-in-memory
       parameters: ""
+      run_tests: false
     - name: observability-structured-logging
       parameters: >
         -p STRUCTURED_LOG_FIELDS='{"level","message"}'
+      run_tests: false
+    - name: testing-catch2
+      parameters: ""
+      run_tests: true
     - name: security-openid
       parameters: >
         -p OPENID_DEFAULT_URL='https://www.example.com/.well-known/openid-configuration'
+      run_tests: true
     - name: security-jwt-auth
       parameters: >
         -p OPENID_DEFAULT_URL='https://www.example.com/.well-known/openid-configuration' -p JWT_AUTH_AUDIENCE='https://www.example.com' -p JWT_AUTH_REQUIRED_CLAIMS='{"scope"}'
+      run_tests: true
     
 steps:
 - task: GoTool@0
@@ -69,18 +78,31 @@ steps:
         exit 1
       fi
       rm -rf $(Agent.TempDirectory)/services/${{ brick.name }}-service/build/src
-    displayName: 'test ${{ brick.name }}-service'
+    displayName: 'build ${{ brick.name }}-service'
   - script: |
       mkdir -p $(Agent.TempDirectory)/build_logs/${{ brick.name }}-service
       mv /tmp/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs/${{ brick.name }}-service || true
     displayName: 'copy build logs ${{ brick.name }}-service'
     condition: always()
+  - script: |
+      mkdir -p $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service
+      cd build/tests
+      ctest . --output-junit $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service/test_report.xml --rerun-failed --output-on-failure
+    displayName: 'test ${{ brick.name }}-service'
+    condition: eq(${{ brick.run_tests }}, true)
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Agent.TempDirectory)/build_logs'
     artifactType: 'pipeline'
     artifactName: 'build_logs'
   displayName: 'publish build logs'
+  condition: always()
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Agent.TempDirectory)/test_reports'
+    artifactType: 'pipeline'
+    artifactName: 'test_reports'
+  displayName: 'publish test reports'
   condition: always()
 - task: PublishPipelineArtifact@1
   inputs:
