@@ -86,7 +86,7 @@ steps:
     condition: always()
   - script: |
       mkdir -p $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service
-      cd build/tests
+      cd $(Agent.TempDirectory)/services/${{ brick.name }}-service/build/tests
       ctest . --output-junit $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service/test_report.xml --rerun-failed --output-on-failure
     displayName: 'test ${{ brick.name }}-service'
     condition: eq(${{ brick.run_tests }}, true)
