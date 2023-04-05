@@ -79,6 +79,7 @@ steps:
       fi
       rm -rf $(Agent.TempDirectory)/services/${{ brick.name }}-service/build/src
     displayName: 'build ${{ brick.name }}-service'
+    condition: always()
   - script: |
       mkdir -p $(Agent.TempDirectory)/build_logs/${{ brick.name }}-service
       mv /tmp/sapper_build_log_*.log $(Agent.TempDirectory)/build_logs/${{ brick.name }}-service || true
