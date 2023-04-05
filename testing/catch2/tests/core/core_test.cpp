@@ -72,6 +72,14 @@ SCENARIO("Core", "[core]")
             }
         }
 
+        WHEN("GetEntity is called with an empty id")
+        {
+            THEN("an invalid_argument exception is thrown")
+            {
+                REQUIRE_THROWS_AS(api->GetEntity(""), std::invalid_argument);
+            }
+        }
+
         WHEN("SetEntity is called")
         {
             Entity e { "my_id", "my_prop", 123 };
@@ -85,6 +93,15 @@ SCENARIO("Core", "[core]")
                 REQUIRE(repo.entity.id == "my_id");
                 REQUIRE(repo.entity.string_property == "my_prop");
                 REQUIRE(repo.entity.int_property == 123);                
+            }
+        }
+
+        WHEN("SetEntity is called with an empty id")
+        {
+            Entity e { "", "my_prop", 123 };
+            THEN("an invalid_argument exception is thrown")
+            {
+                REQUIRE_THROWS_AS(api->SetEntity(e), std::invalid_argument);
             }
         }
     }

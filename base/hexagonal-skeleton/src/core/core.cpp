@@ -13,6 +13,11 @@ void Core::SetEntity(const Entity& entity)
       throw std::runtime_error("invalid repo");
    }
 
+   if(entity.id.empty()) {
+      throw std::invalid_argument("invalid id");
+   }
+   
+
    _repo->Store(entity);
 
    if(_notifier){
@@ -24,6 +29,10 @@ void Core::SetEntity(const Entity& entity)
  {
    if(!_repo) {
       throw std::runtime_error("invalid repo");
+   }
+
+   if(id.empty()) {
+      throw std::invalid_argument("invalid id");
    }
    return _repo->Retrieve(id);    
  }
