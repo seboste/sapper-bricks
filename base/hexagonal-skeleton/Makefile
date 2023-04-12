@@ -1,14 +1,23 @@
-build:
 #<<<SAPPER SECTION BEGIN MAKEFILE-BUILD>>>
+build:
 	mkdir -p build	
 	conan install . -if build -s build_type=Release
 	cmake -Bbuild -S. -DCMAKE_BUILD_TYPE=Release
 	cmake --build build
 #<<<SAPPER SECTION END MAKEFILE-BUILD>>>
-test: build
+
 #<<<SAPPER SECTION BEGIN MAKEFILE-TEST>>>
+test: build
 #<<<SAPPER SECTION END MAKEFILE-TEST>>>
 
-deploy: build
+#<<<SAPPER SECTION BEGIN MAKEFILE-RUN>>>
+run: build	
+#<<<SAPPER SECTION END MAKEFILE-RUN>>>
+	build/src/app/<<<NAME>>>
+
 #<<<SAPPER SECTION BEGIN MAKEFILE-DEPLOY>>>
+deploy: build
 #<<<SAPPER SECTION END MAKEFILE-DEPLOY>>>
+
+#<<<SAPPER SECTION BEGIN MAKEFILE-MISC>>>
+#<<<SAPPER SECTION END MAKEFILE-MISC>>>
