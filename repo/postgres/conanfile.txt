@@ -1,5 +1,8 @@
 [requires]
 #<<<SAPPER SECTION BEGIN MERGE CONAN-DEPENDENCIES>>>
-protobuf/3.21.4
-grpc/1.50.1
+cpp-httplib/0.11.4
+nlohmann_json/3.11.2
+openssl/3.0.5
+cpp-jwt/1.4
+libpqxx/7.7.5
 #<<<SAPPER SECTION END MERGE CONAN-DEPENDENCIES>>>

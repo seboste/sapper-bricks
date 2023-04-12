@@ -83,7 +83,7 @@ void HttpHandler::getEntity(const httplib::Request& request, httplib::Response& 
             if(!e_optional)
             {
                 
-                return mse::Status { mse::StatusCode::not_found, std::string("unknown entity with id" ) + id };
+                return mse::Status { mse::StatusCode::not_found, std::string("unknown entity with id " ) + id };
             }
 
             response.set_content(

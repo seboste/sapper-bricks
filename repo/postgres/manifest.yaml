@@ -1,0 +1,9 @@
+---
+id : repo-postgres
+version : 0.1.0
+kind: extension
+description : repo that stores entities in a postgreSQL db.
+dependencies : [ base-hexagonal-skeleton, testing-catch2 ]
+parameters :
+  - name : POSTGRES_CONNECTION_STRING
+    default : 'postgres://postgres:my_password@localhost:5432'

@@ -40,6 +40,10 @@ parameters:
       parameters: >
         -p OPENID_DEFAULT_URL='https://www.example.com/.well-known/openid-configuration' -p JWT_AUTH_AUDIENCE='https://www.example.com' -p JWT_AUTH_REQUIRED_CLAIMS='{"scope"}'
       run_tests: true
+    - name: repo-postgres
+      parameters: >
+        -p POSTGRES_CONNECTION_STRING='postgres://postgres:my_password@localhost:5432'
+      run_tests: true
     
 steps:
 - task: GoTool@0

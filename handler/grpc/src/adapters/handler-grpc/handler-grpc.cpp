@@ -44,7 +44,7 @@ public:
                     std::optional<Entity> e_optional =  _api.GetEntity(request->id());
                     if(!e_optional)
                     {
-                        return mse::Status { mse::StatusCode::not_found, std::string("unknown entity with id" ) + request->id() };
+                        return mse::Status { mse::StatusCode::not_found, std::string("unknown entity with id " ) + request->id() };
                     }
 
                     const Entity& e = e_optional.value();                    
