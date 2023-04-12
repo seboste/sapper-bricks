@@ -9,7 +9,7 @@ dbstart:
 	 @if [ "$(ENTITY_CONTAINER_LINE_COUNT_WITH_HEADER)" != "2" ]; then														\
 	 	docker run --name entity-postgres -v "$(PWD)/db":/db -e POSTGRES_PASSWORD=my_password -p 5432:5432 -d postgres;		\
 		sleep 3;																											\
-		docker exec -it entity-postgres psql postgres://postgres:my_password@localhost:5432 -c "\i db/schema.sql";			\
+		docker exec -it entity-postgres psql <<<POSTGRES_CONNECTION_STRING>>> -c "\i db/schema.sql";						\
 	else																													\
 		docker start entity-postgres;																						\
 	fi

@@ -7,7 +7,7 @@ int main()
         ...
 
         //<<<SAPPER SECTION BEGIN REPLACE MAIN-REPO-INSTANTIATION>>>
-        std::unique_ptr<EntityRepo> repo = std::make_unique<PostgresRepo>(mse::getenv_or("POSTGRES_CONNECTION_STRING", "postgres://postgres:my_password@localhost:5432"));
+        std::unique_ptr<EntityRepo> repo = std::make_unique<PostgresRepo>(mse::getenv_or("POSTGRES_CONNECTION_STRING", <<<POSTGRES_CONNECTION_STRING>>>));
         //<<<SAPPER SECTION END REPLACE MAIN-REPO-INSTANTIATION>>>
     
         ...
