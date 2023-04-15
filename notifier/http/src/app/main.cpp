@@ -11,7 +11,7 @@ int main()
                 mse::getenv_or("NOTIFIER_CONNECTION_STRING", "<<<NOTIFIER_CONNECTION_STRING>>>"),
                 mse::getenv_or("NOTIFIER_MAX_RETRY_COUNT", <<<NOTIFIER_MAX_RETRY_COUNT>>>),
                 std::chrono::milliseconds(mse::getenv_or("NOTIFIER_FIRST_RETRY_INTERVAL_MS", <<<NOTIFIER_FIRST_RETRY_INTERVAL_MS>>>))
-        )
+        );
         //<<<SAPPER SECTION END REPLACE MAIN-NOTIFIER-INSTANTIATION>>>        
     
         ...
