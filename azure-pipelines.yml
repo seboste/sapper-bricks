@@ -16,8 +16,9 @@ parameters:
 - name: bricks
   type: object
   default:
-    - name: handler-httplib
-      parameters: ""
+    - name: handler-http
+      parameters: >
+        -p HANDLER_HTTP_HOST='0.0.0.0' -p HANDLER_HTTP_PORT=8080
       run_tests: false
     - name: handler-grpc
       parameters: ""
@@ -44,6 +45,10 @@ parameters:
       parameters: >
         -p POSTGRES_CONNECTION_STRING='postgres://postgres:my_password@localhost:5432'
       run_tests: true
+    - name: notifier-https
+      parameters: >
+        -p NOTIFIER_CONNECTION_STRING='http://localhost:8080' -p NOTIFIER_MAX_RETRY_COUNT=3 -p NOTIFIER_FIRST_RETRY_INTERVAL_MS=100
+      run_tests: false
     
 steps:
 - task: GoTool@0
