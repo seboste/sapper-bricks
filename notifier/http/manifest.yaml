@@ -1,0 +1,13 @@
+---
+id : notifier-http
+version : 0.1.0
+kind: extension
+description : notifies an http endpoint that an entity has changed
+dependencies : [ base-hexagonal-skeleton ]
+parameters :
+  - name : NOTIFIER_CONNECTION_STRING
+    default : 'http://localhost:8080'
+  - name : NOTIFIER_MAX_RETRY_COUNT
+    default : 3
+  - name : NOTIFIER_FIRST_RETRY_INTERVAL_MS
+    default : 100
