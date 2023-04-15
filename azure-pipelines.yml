@@ -21,7 +21,8 @@ parameters:
         -p HANDLER_HTTP_HOST='0.0.0.0' -p HANDLER_HTTP_PORT=8080
       run_tests: false
     - name: handler-grpc
-      parameters: ""
+      parameters: >
+        -p HANDLER_GRPC_HOST='0.0.0.0' -p HANDLER_GRPC_PORT=50051
       run_tests: false
     - name: repo-in-memory
       parameters: ""
