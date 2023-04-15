@@ -7,7 +7,7 @@ int main()
         ...
 
 //<<<SAPPER SECTION BEGIN REPLACE MAIN-HANDLER-INSTANTIATION>>>
-        HttpHandler handler(core);
+        HttpHandler handler(core, mse::getenv_or("HOST", "<<<HANDLER_HTTP_HOST>>>"), mse::getenv_or("PORT", <<<HANDLER_HTTP_PORT>>>));
 //<<<SAPPER SECTION END REPLACE MAIN-HANDLER-INSTANTIATION>>>
 
         ...
