@@ -6,4 +6,4 @@ description : provides configuration for the decentralized authentication protoc
 dependencies : [ base-hexagonal-skeleton, testing-catch2 ]
 parameters :
   - name : OPENID_DEFAULT_URL
-    default : '"https://www.example.com/.well-known/openid-configuration"'
+    default : 'https://www.example.com/.well-known/openid-configuration'

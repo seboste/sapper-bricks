@@ -4,3 +4,8 @@ version : 0.1.0
 kind: extension
 description : gRPC handler
 dependencies : [ base-hexagonal-skeleton, helper-grpc ]
+parameters :
+  - name : HANDLER_GRPC_HOST  
+    default : '0.0.0.0'
+  - name : HANDLER_GRPC_PORT
+    default : 50051

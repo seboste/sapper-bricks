@@ -1,0 +1,11 @@
+---
+id : handler-http
+version : 0.1.0
+kind: extension
+description : http handler
+dependencies : [ base-hexagonal-skeleton ]
+parameters :
+  - name : HANDLER_HTTP_HOST  
+    default : '0.0.0.0'
+  - name : HANDLER_HTTP_PORT
+    default : 8080

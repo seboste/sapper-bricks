@@ -12,6 +12,12 @@ int main()
         RestJwksRSAKeyProvider key_provider(openid_config.jwks_uri);
 //<<<SAPPER SECTION END APPEND MAIN-INITIALIZATION>>>
 
+        const std::vector<std::string> headers_to_propagate = {
+//<<<SAPPER SECTION BEGIN MERGE MAIN-HEADERS-TO-PROPAGATE>>>        
+                "authorization",
+//<<<SAPPER SECTION END MERGE MAIN-HEADERS-TO-PROPAGATE>>>
+        };
+
 //<<<SAPPER SECTION BEGIN APPEND MAIN-REQUEST-HANDLER-HOOKS>>>
         mse::RequestHandler::GloballyWith(JwtAuthRequestHook::RS256Parameters(key_provider, openid_config.issuer, "<<<JWT_AUTH_AUDIENCE>>>", <<<JWT_AUTH_REQUIRED_CLAIMS>>>));
 //<<<SAPPER SECTION END APPEND MAIN-REQUEST-HANDLER-HOOKS>>>

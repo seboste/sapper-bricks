@@ -88,7 +88,7 @@ void HttpHandler::getEntity(const httplib::Request& request, httplib::Response& 
 
             response.set_content(
                     to_json(e_optional.value()).dump(),
-                    "text/json"
+                    "application/json"
                 );
             return mse::Status::OK;
         });
