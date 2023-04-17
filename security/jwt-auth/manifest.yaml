@@ -6,6 +6,6 @@ description : provides JWT based authentication. Enables the use of scope based 
 dependencies : [ base-hexagonal-skeleton, testing-catch2, security-openid ]
 parameters :
   - name : JWT_AUTH_AUDIENCE
-    default : '"https://www.example.com"'
+    default : 'https://www.example.com'
   - name : JWT_AUTH_REQUIRED_CLAIMS
     default : '{"scope"}'
