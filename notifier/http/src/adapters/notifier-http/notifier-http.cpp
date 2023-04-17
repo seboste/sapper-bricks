@@ -22,8 +22,9 @@ json to_json(const Entity& entity)
 }
 }
 
-HttpNotifier::HttpNotifier(const std::string& notification_connection_string, uint32_t max_retry_count, std::chrono::system_clock::duration first_retry_interval)
+HttpNotifier::HttpNotifier(const std::string& notification_connection_string, const std::vector<std::string>& headers_to_propagate, uint32_t max_retry_count, std::chrono::system_clock::duration first_retry_interval)
     : _notification_connection_string(notification_connection_string)
+    , _headers_to_propagate(headers_to_propagate)
     , _max_retry_count(max_retry_count)
     , _first_retry_interval(first_retry_interval)
 {   
@@ -47,7 +48,7 @@ void HttpNotifier::EntityChanged(const Entity& entity)
             client.set_read_timeout(3, 0);            
             auto resp = client.Put(
                 std::string("/Entity/") + entity.id,
-                mse::FromContextMetadata<httplib::Headers>(context.GetMetadata()), 
+                mse::FromContextMetadata<httplib::Headers>(context.GetFilteredMetadata(_headers_to_propagate)), 
                 to_json(entity).dump(), 
                 "application/json"
                 );
