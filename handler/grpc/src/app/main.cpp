@@ -7,7 +7,7 @@ int main()
         ...
 
 //<<<SAPPER SECTION BEGIN REPLACE MAIN-HANDLER-INSTANTIATION>>>
-        GrpcHandler handler(core, mse::getenv_or("HOST", "<<<HANDLER_GRPC_HOST>>>"), mse::getenv_or("PORT", <<<HANDLER_GRPC_PORT>>>));        
+        GrpcHandler handler(core, mse::getenv_or("HOST", "<<<HOST>>>"), mse::getenv_or("PORT", <<<PORT>>>));        
 //<<<SAPPER SECTION END REPLACE MAIN-HANDLER-INSTANTIATION>>>
 
         ...

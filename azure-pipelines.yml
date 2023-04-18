@@ -18,11 +18,11 @@ parameters:
   default:
     - name: handler-http
       parameters: >
-        -p HANDLER_HTTP_HOST='0.0.0.0' -p HANDLER_HTTP_PORT=8080
+        -p HOST='0.0.0.0' -p PORT=8080
       run_tests: false
     - name: handler-grpc
       parameters: >
-        -p HANDLER_GRPC_HOST='0.0.0.0' -p HANDLER_GRPC_PORT=50051
+        -p HOST='0.0.0.0' -p PORT=50051
       run_tests: false
     - name: repo-in-memory
       parameters: ""
@@ -49,6 +49,10 @@ parameters:
     - name: notifier-http
       parameters: >
         -p NOTIFIER_CONNECTION_STRING='http://localhost:8080' -p NOTIFIER_MAX_RETRY_COUNT=3 -p NOTIFIER_FIRST_RETRY_INTERVAL_MS=100
+      run_tests: false
+    - name: deploy-docker
+      parameters: >
+        -p PORT='8080' -p DOCKER_BASE_IMAGE='ubuntu:latest'
       run_tests: false
     
 steps:
