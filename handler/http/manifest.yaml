@@ -5,7 +5,7 @@ kind: extension
 description : http handler
 dependencies : [ base-hexagonal-skeleton ]
 parameters :
-  - name : HANDLER_HTTP_HOST  
+  - name : HOST
     default : '0.0.0.0'
-  - name : HANDLER_HTTP_PORT
+  - name : PORT
     default : 8080

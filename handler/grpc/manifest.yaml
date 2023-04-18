@@ -5,7 +5,7 @@ kind: extension
 description : gRPC handler
 dependencies : [ base-hexagonal-skeleton, helper-grpc ]
 parameters :
-  - name : HANDLER_GRPC_HOST  
+  - name : HOST  
     default : '0.0.0.0'
-  - name : HANDLER_GRPC_PORT
+  - name : PORT
     default : 50051

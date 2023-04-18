@@ -1,7 +1,6 @@
-#<<<SAPPER SECTION BEGIN REPLACE MAKEFILE-RUN>>>
-run: build dbstart	
-#<<<SAPPER SECTION END REPLACE MAKEFILE-RUN>>>
-	build/src/app/<<<NAME>>>	#cannot be inside because <<<NAME>>> cannot be evaluated as of now
+#<<<SAPPER SECTION BEGIN REPLACE MAKEFILE-RUN-ENV>>>
+run-env: dbstart
+#<<<SAPPER SECTION END REPLACE MAKEFILE-RUN-ENV>>>
 
 #<<<SAPPER SECTION BEGIN APPEND MAKEFILE-MISC>>>
 dbstart:

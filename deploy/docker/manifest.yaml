@@ -1,0 +1,11 @@
+---
+id : deploy-docker
+version : 0.1.0
+kind: extension
+description : create a docker container containing the service
+dependencies : [ base-hexagonal-skeleton ]
+parameters:
+  - name : 'DOCKER_BASE_IMAGE'
+    default : 'ubuntu:latest'
+  - name : 'NAME'
+  - name : 'PORT'
