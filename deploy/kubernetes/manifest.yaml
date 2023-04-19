@@ -1,0 +1,11 @@
+---
+id : deploy-kubernetes
+version : 0.1.0
+kind: extension
+description : deploys a kubenetes deployment and service (works with docker desktop kubernetes)
+dependencies : [ base-hexagonal-skeleton, deploy-docker ]
+parameters:
+  - name : 'KUBERNETES_REPLICAS'
+    default : '3'
+  - name : 'NAME'
+  - name : 'PORT'

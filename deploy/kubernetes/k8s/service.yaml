@@ -1,0 +1,13 @@
+kind: Service 
+apiVersion: v1 
+metadata:
+  name: <<<NAME>>>
+spec:
+  type: LoadBalancer  
+  selector:
+    app: <<<NAME>>>
+  ports:
+    - name: http
+      port: <<<PORT>>>
+      protocol: TCP
+      targetPort: <<<PORT>>>
