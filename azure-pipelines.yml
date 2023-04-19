@@ -54,7 +54,10 @@ parameters:
       parameters: >
         -p PORT='8080' -p DOCKER_BASE_IMAGE='ubuntu:latest'
       run_tests: false
-    
+    - name: deploy-kubernetes
+      parameters: >
+        -p PORT='8080' -p DOCKER_BASE_IMAGE='ubuntu:latest' -p KUBERNETES_REPLICAS=3
+      run_tests: false    
 steps:
 - task: GoTool@0
   inputs:
