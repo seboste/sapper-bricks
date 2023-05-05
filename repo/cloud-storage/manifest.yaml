@@ -2,8 +2,10 @@
 id : repo-cloud-storage
 version : 0.1.0
 kind: extension
-description : repo that stores entities in a google cloud storage bucket.
+description : repo that stores entities in a google cloud storage bucket. Requires a google cloud service account key (.json) with sufficient privilege.
 dependencies : [ base-hexagonal-skeleton ]
 parameters :
   - name : CLOUD_STORAGE_BUCKET
     default : 'sapper-test-bucket'
+  - name : GOOGLE_APPLICATION_CREDENTIALS    
+  - name : NAME
