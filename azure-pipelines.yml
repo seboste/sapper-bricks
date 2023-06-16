@@ -83,8 +83,7 @@ steps:
     conan profile update settings.compiler.libcxx=libstdc++11 default
   displayName: install conan
 - script: |
-    git clone https://github.com/seboste/microservice-essentials.git $(Agent.TempDirectory)/mse    
-    conan create $(Agent.TempDirectory)/mse
+    conan create . microservice-essentials/0.1.0@_/_    
   displayName: obtain microservices essentials lib
 - ${{ each brick in parameters.bricks }}:
   - script: |
