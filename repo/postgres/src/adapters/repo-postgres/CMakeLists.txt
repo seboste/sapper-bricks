@@ -15,6 +15,6 @@ target_link_libraries(repo-postgres
     PUBLIC
         ports
     PRIVATE
-        libpqxx::libpqxx
+        libpqxx::pqxx
         microservice-essentials::microservice-essentials
     )

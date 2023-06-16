@@ -9,6 +9,6 @@ target_sources(tests
 target_link_libraries(tests
     PRIVATE
         repo-postgres
-        libpqxx::libpqxx
+        libpqxx::pqxx
         microservice-essentials::microservice-essentials
     )
