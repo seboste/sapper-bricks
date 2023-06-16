@@ -17,6 +17,6 @@ target_link_libraries(security-openid
         httplib::httplib
         microservice-essentials::microservice-essentials
         nlohmann_json::nlohmann_json
-        OpenSSL::OpenSSL
+        openssl::openssl
     )
 

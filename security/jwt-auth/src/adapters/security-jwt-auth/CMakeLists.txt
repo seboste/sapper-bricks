@@ -21,5 +21,5 @@ target_link_libraries(security-jwt-auth
     PRIVATE
         cpp-jwt::cpp-jwt
         httplib::httplib
-        OpenSSL::OpenSSL
+        openssl::openssl
     )
