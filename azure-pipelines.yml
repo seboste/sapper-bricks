@@ -71,7 +71,6 @@ steps:
   inputs:
     version: '1.20.1'
 - script: |
-    echo machine github.com login seboste password $(GIT_SAPPER_TOKEN) > ~/.netrc
     export GOBIN=/usr/local/bin/
     go env -w GOPRIVATE=github.com/seboste/*
     go install github.com/seboste/sapper@latest
