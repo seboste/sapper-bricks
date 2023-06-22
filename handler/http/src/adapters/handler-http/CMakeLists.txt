@@ -18,5 +18,5 @@ target_link_libraries(handler-http
     PRIVATE        
         httplib::httplib 
         nlohmann_json::nlohmann_json
-        OpenSSL::OpenSSL
+        openssl::openssl
     )

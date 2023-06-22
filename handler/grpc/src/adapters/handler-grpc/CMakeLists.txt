@@ -41,5 +41,5 @@ target_link_libraries(handler-grpc
         ports
         microservice-essentials::microservice-essentials
         protobuf::protobuf
-        gRPC::gRPC
+        grpc::grpc
     )
