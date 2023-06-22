@@ -58,14 +58,14 @@ parameters:
       parameters: >
         -p PORT='8080' -p DOCKER_BASE_IMAGE='ubuntu:latest' -p KUBERNETES_REPLICAS=3
       run_tests: false
-    - name: repo-google-cloud-storage
-      parameters: >
-        -p PORT='8080' -p CLOUD_STORAGE_BUCKET='sapper-test-bucket' -p GOOGLE_APPLICATION_CREDENTIALS='key.json'
-      run_tests: false
-    - name: notifier-google-pubsub
-      parameters: >
-        -p GOOGLE_APPLICATION_CREDENTIALS='key.json' -p PUBSUB_TOPIC='my-topic' -p GOOGLE_PROJECT='my-project'
-      run_tests: false
+#    - name: repo-google-cloud-storage
+#      parameters: >
+#        -p PORT='8080' -p CLOUD_STORAGE_BUCKET='sapper-test-bucket' -p GOOGLE_APPLICATION_CREDENTIALS='key.json'
+#      run_tests: false
+#    - name: notifier-google-pubsub
+#      parameters: >
+#        -p GOOGLE_APPLICATION_CREDENTIALS='key.json' -p PUBSUB_TOPIC='my-topic' -p GOOGLE_PROJECT='my-project'
+#      run_tests: false
 steps:
 - task: GoTool@0
   inputs:
