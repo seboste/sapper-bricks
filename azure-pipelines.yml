@@ -127,7 +127,7 @@ steps:
     displayName: 'move test report ${{ brick.name }}-service'
     condition: eq(${{ brick.run_tests }}, true)
   - script: |      
-      sapper service run --stop-after 5s $(Agent.TempDirectory)/services/${{ brick.name }}-service
+      sapper service run --stop-after 15s $(Agent.TempDirectory)/services/${{ brick.name }}-service
     displayName: 'smoke test ${{ brick.name }}-service'
     condition: eq(${{ brick.run_smoke_test }}, true)
   - script: |
