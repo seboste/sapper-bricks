@@ -21,10 +21,10 @@ run: build run-env
 
 stop:
 #<<<SAPPER SECTION BEGIN MAKEFILE-STOP>>>
-	ps -a
-	ps -a | grep <<<NAME>>>
-	ps -a | grep <<<NAME>>> | awk '{print $$1}'
-	ps -a | grep <<<NAME>>> | awk '{print $$1}' | xargs kill -15
+	ps -e
+	ps -e | grep <<<NAME>>>
+	ps -e | grep <<<NAME>>> | awk '{print $$1}'
+	ps -e | grep <<<NAME>>> | awk '{print $$1}' | xargs kill -15
 #<<<SAPPER SECTION END MAKEFILE-STOP>>>
 
 #<<<SAPPER SECTION BEGIN MAKEFILE-DEPLOY>>>
