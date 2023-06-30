@@ -5,7 +5,7 @@
 #include <vector>
 #include <memory>
 
-namespace google { namespace cloud { namespace pubsub { inline namespace v2_5_0 { class PublisherConnection; }}}}
+namespace google { namespace cloud { namespace pubsub { inline namespace v2_12 { class PublisherConnection; }}}}
 
 class PubSubNotifier : public EntityNotifier
 {
