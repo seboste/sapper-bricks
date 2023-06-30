@@ -3,7 +3,7 @@ id : handler-grpc
 version : 0.1.0
 kind: extension
 description : gRPC handler
-dependencies : [ base-hexagonal-skeleton, helper-grpc ]
+dependencies : [ base-hexagonal-skeleton ]
 parameters :
   - name : HOST  
     default : '0.0.0.0'
