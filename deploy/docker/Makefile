@@ -9,3 +9,7 @@
 # --add-host=host.docker.internal:host-gateway
 
 #<<<SAPPER SECTION END REPLACE MAKEFILE-RUN>>>
+
+#<<<SAPPER SECTION BEGIN REPLACE MAKEFILE-STOP>>>
+	docker ps | grep <<<NAME>>> | awk '{print $$1}' | xargs docker kill --signal="SIGTERM"
+#<<<SAPPER SECTION END REPLACE MAKEFILE-STOP>>>
