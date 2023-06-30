@@ -63,7 +63,7 @@ parameters:
       parameters: >
         -p PORT='8080' -p DOCKER_BASE_IMAGE='ubuntu:latest'
       run_tests: false
-      run_smoke_test: false
+      run_smoke_test: true
     - name: deploy-kubernetes
       parameters: >
         -p PORT='8080' -p DOCKER_BASE_IMAGE='ubuntu:latest' -p KUBERNETES_REPLICAS=3
