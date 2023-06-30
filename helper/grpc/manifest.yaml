@@ -1,6 +1,0 @@
----
-id : helper-grpc
-version : 0.1.0
-kind: extension
-description : helper for gRPC handler, client. Adds grpc and protobuf dependencies.
-dependencies : [ base-hexagonal-skeleton ]

@@ -19,6 +19,11 @@ run: build run-env
 	build/src/app/<<<NAME>>>
 #<<<SAPPER SECTION END MAKEFILE-RUN>>>
 
+stop:
+#<<<SAPPER SECTION BEGIN MAKEFILE-STOP>>>	
+	ps -eo pid,cmd | cat | grep build/src/app/<<<NAME>>> | awk '{print $$1}' | xargs kill -15
+#<<<SAPPER SECTION END MAKEFILE-STOP>>>
+
 #<<<SAPPER SECTION BEGIN MAKEFILE-DEPLOY>>>
 deploy: build
 #<<<SAPPER SECTION END MAKEFILE-DEPLOY>>>
