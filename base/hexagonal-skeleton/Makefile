@@ -20,11 +20,7 @@ run: build run-env
 #<<<SAPPER SECTION END MAKEFILE-RUN>>>
 
 stop:
-#<<<SAPPER SECTION BEGIN MAKEFILE-STOP>>>
-	ps -eo pid,cmd
-	ps -eo pid,cmd | cat
-	ps -eo pid,cmd | cat | grep build/src/app/<<<NAME>>>
-	ps -eo pid,cmd | cat | grep build/src/app/<<<NAME>>> | awk '{print $$1}'
+#<<<SAPPER SECTION BEGIN MAKEFILE-STOP>>>	
 	ps -eo pid,cmd | cat | grep build/src/app/<<<NAME>>> | awk '{print $$1}' | xargs kill -15
 #<<<SAPPER SECTION END MAKEFILE-STOP>>>
 
