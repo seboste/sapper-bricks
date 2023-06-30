@@ -20,52 +20,65 @@ parameters:
       parameters: >
         -p HOST='0.0.0.0' -p PORT=8080
       run_tests: false
+      run_smoke_test: true
     - name: handler-grpc
       parameters: >
         -p HOST='0.0.0.0' -p PORT=50051
       run_tests: false
+      run_smoke_test: true
     - name: repo-in-memory
       parameters: ""
       run_tests: false
+      run_smoke_test: true
     - name: observability-structured-logging
       parameters: >
         -p STRUCTURED_LOG_FIELDS='{"level","message"}'
       run_tests: false
+      run_smoke_test: true
     - name: testing-catch2
       parameters: ""
       run_tests: true
+      run_smoke_test: true
     - name: security-openid
       parameters: >
         -p OPENID_DEFAULT_URL='https://www.example.com/.well-known/openid-configuration'
       run_tests: true
+      run_smoke_test: false
     - name: security-jwt-auth
       parameters: >
         -p OPENID_DEFAULT_URL='https://www.example.com/.well-known/openid-configuration' -p JWT_AUTH_AUDIENCE='https://www.example.com' -p JWT_AUTH_REQUIRED_CLAIMS='{"scope"}'
       run_tests: true
+      run_smoke_test: false
     - name: repo-postgres
       parameters: >
         -p POSTGRES_CONNECTION_STRING='postgres://postgres:my_password@localhost:5432'
       run_tests: true
+      run_smoke_test: false
     - name: notifier-http
       parameters: >
         -p NOTIFIER_CONNECTION_STRING='http://localhost:8080' -p NOTIFIER_MAX_RETRY_COUNT=3 -p NOTIFIER_FIRST_RETRY_INTERVAL_MS=100
       run_tests: false
+      run_smoke_test: true
     - name: deploy-docker
       parameters: >
         -p PORT='8080' -p DOCKER_BASE_IMAGE='ubuntu:latest'
       run_tests: false
+      run_smoke_test: false
     - name: deploy-kubernetes
       parameters: >
         -p PORT='8080' -p DOCKER_BASE_IMAGE='ubuntu:latest' -p KUBERNETES_REPLICAS=3
       run_tests: false
+      run_smoke_test: false
     - name: repo-google-cloud-storage
       parameters: >
         -p PORT='8080' -p CLOUD_STORAGE_BUCKET='sapper-test-bucket' -p GOOGLE_APPLICATION_CREDENTIALS='key.json'
       run_tests: false
+      run_smoke_test: false
     - name: notifier-google-pubsub
       parameters: >
         -p GOOGLE_APPLICATION_CREDENTIALS='key.json' -p PUBSUB_TOPIC='my-topic' -p GOOGLE_PROJECT='my-project'
       run_tests: false
+      run_smoke_test: false
 steps:
 - task: GoTool@0
   inputs:
@@ -111,6 +124,11 @@ steps:
       ctest . --output-junit $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service/test_report.xml --rerun-failed --output-on-failure
     displayName: 'test ${{ brick.name }}-service'
     condition: eq(${{ brick.run_tests }}, true)
+  - script: |      
+      cd $(Agent.TempDirectory)/services/${{ brick.name }}-service
+      sapper service run --stop-after 5s .      
+    displayName: 'smoke test ${{ brick.name }}-service'
+    condition: eq(${{ brick.run_smoke_test }}, true)
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Agent.TempDirectory)/build_logs'
