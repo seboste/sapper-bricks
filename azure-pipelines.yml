@@ -110,7 +110,6 @@ steps:
       if [ $? -ne 0 ]; then
         exit 1
       fi
-      rm -rf $(Agent.TempDirectory)/services/${{ brick.name }}-service/build/src
     displayName: 'build ${{ brick.name }}-service'
     condition: always()
   - script: |
@@ -125,10 +124,13 @@ steps:
     displayName: 'test ${{ brick.name }}-service'
     condition: eq(${{ brick.run_tests }}, true)
   - script: |      
-      cd $(Agent.TempDirectory)/services/${{ brick.name }}-service
-      sapper service run --stop-after 5s .      
+      sapper service run --stop-after 5s $(Agent.TempDirectory)/services/${{ brick.name }}-service
     displayName: 'smoke test ${{ brick.name }}-service'
     condition: eq(${{ brick.run_smoke_test }}, true)
+  - script: |
+      rm -rf $(Agent.TempDirectory)/services/${{ brick.name }}-service/build/src
+    displayName: 'cleanup ${{ brick.name }}-service'
+    condition: always()
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Agent.TempDirectory)/build_logs'
