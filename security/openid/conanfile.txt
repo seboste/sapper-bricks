@@ -1,6 +1,6 @@
 [requires]
 #<<<SAPPER SECTION BEGIN MERGE CONAN-DEPENDENCIES>>>
-cpp-httplib/0.11.4
+cpp-httplib/0.12.6
 nlohmann_json/3.11.2
-openssl/3.0.5
+openssl/3.1.1
 #<<<SAPPER SECTION END MERGE CONAN-DEPENDENCIES>>>
