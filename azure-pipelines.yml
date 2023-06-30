@@ -118,14 +118,12 @@ steps:
     displayName: 'copy build logs ${{ brick.name }}-service'
     condition: always()
   - script: |
-      sapper service test $(Agent.TempDirectory)/services/${{ brick.name }}-service
-      cd $(Agent.TempDirectory)/services/${{ brick.name }}-service/build/tests
-      ctest . --output-junit $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service/test_report.xml --rerun-failed --output-on-failure
+      sapper service test $(Agent.TempDirectory)/services/${{ brick.name }}-service      
     displayName: 'test ${{ brick.name }}-service'
     condition: eq(${{ brick.run_tests }}, true)
   - script: |
       mkdir -p $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service
-      mv test_report.xml $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service/test_report.xml
+      mv $(Agent.TempDirectory)/services/${{ brick.name }}-service/build/tests/test_report.xml $(Agent.TempDirectory)/test_reports/${{ brick.name }}-service/test_report.xml || true
     displayName: 'move test report ${{ brick.name }}-service'
     condition: eq(${{ brick.run_tests }}, true)
   - script: |      
