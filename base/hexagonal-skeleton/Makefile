@@ -23,9 +23,9 @@ stop:
 #<<<SAPPER SECTION BEGIN MAKEFILE-STOP>>>
 	ps -eo pid,cmd
 	ps -eo pid,cmd | cat
-	ps -eo pid,cmd | cat | grep <<<NAME>>>
-	ps -eo pid,cmd | cat | grep <<<NAME>>> | awk '{print $$1}'
-	ps -eo pid,cmd | cat | grep <<<NAME>>> | awk '{print $$1}' | xargs kill -15
+	ps -eo pid,cmd | cat | grep build/src/app/<<<NAME>>>
+	ps -eo pid,cmd | cat | grep build/src/app/<<<NAME>>> | awk '{print $$1}'
+	ps -eo pid,cmd | cat | grep build/src/app/<<<NAME>>> | awk '{print $$1}' | xargs kill -15
 #<<<SAPPER SECTION END MAKEFILE-STOP>>>
 
 #<<<SAPPER SECTION BEGIN MAKEFILE-DEPLOY>>>
