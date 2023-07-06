@@ -5,7 +5,7 @@ kind: extension
 description : notifies a google pubsub topic that an entity has changed
 dependencies : [ base-hexagonal-skeleton ]
 parameters :
-  - name : GOOGLE_PROJECT    
+  - name : GOOGLE_PROJECT
   - name : PUBSUB_TOPIC
   - name : GOOGLE_APPLICATION_CREDENTIALS
   - name : NAME
