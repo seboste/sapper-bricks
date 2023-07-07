@@ -1,11 +1,11 @@
 ---
-id : notifier-google-pubsub
+id : handler-google-pubsub
 version : 0.1.0
 kind: extension
-description : notifies a google pubsub topic that an entity has changed
+description : handler for the setEntity endpoint upon receiving a message from google pubsub
 dependencies : [ base-hexagonal-skeleton ]
 parameters :
   - name : GOOGLE_PROJECT
-  - name : PUBSUB_TOPIC
+  - name : PUBSUB_SUBSCRIPTION
   - name : GOOGLE_APPLICATION_CREDENTIALS
   - name : NAME
