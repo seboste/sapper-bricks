@@ -84,6 +84,10 @@ parameters:
         -p GOOGLE_APPLICATION_CREDENTIALS='key.json' -p PUBSUB_SUBSCRIPTION='my-subscription' -p GOOGLE_PROJECT='my-project'
       run_tests: false
       run_smoke_test: false
+    - name: handler-cli
+      parameters: ""
+      run_tests: false
+      run_smoke_test: false
 steps:
 - task: GoTool@0
   inputs:

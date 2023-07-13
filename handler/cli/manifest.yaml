@@ -1,0 +1,7 @@
+---
+id : handler-cli
+version : 0.1.0
+kind: extension
+description : provides a cli interface
+dependencies : [ base-hexagonal-skeleton ]
+parameters :
