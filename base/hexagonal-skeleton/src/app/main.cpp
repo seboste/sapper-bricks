@@ -9,7 +9,7 @@
 #include <microservice-essentials/request/request-processor.h>
 //<<<SAPPER SECTION END MAIN-INCLUDES>>>
 
-int main()
+int main(int argc, char **argv)
 {
     mse::Context::GetGlobalContext().Insert({   
 //<<<SAPPER SECTION BEGIN MAIN-ENVIRONMENT>>>
