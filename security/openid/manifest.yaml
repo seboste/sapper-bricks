@@ -1,7 +1,7 @@
 ---
 id : security-openid
 version : 0.1.0
-kind: extension
+kind: helper
 description : provides configuration for the decentralized authentication protocol OpenID.
 dependencies : [ base-hexagonal-skeleton, testing-catch2 ]
 parameters :
