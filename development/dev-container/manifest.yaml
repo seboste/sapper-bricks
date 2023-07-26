@@ -1,0 +1,7 @@
+---
+id : development-dev-container
+version : 0.1.0
+kind: extension
+description : provides a Dockerfile for a container image that contains sapper, conan, cmake, ... for the use with vscode
+dependencies : [ ]
+parameters :

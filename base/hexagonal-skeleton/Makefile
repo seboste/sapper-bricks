@@ -1,7 +1,7 @@
 #<<<SAPPER SECTION BEGIN MAKEFILE-BUILD>>>
 build:
 	mkdir -p build	
-	conan install . -if build -s build_type=Release --build=missing
+	cd build && conan install .. -s build_type=Release --build=missing
 	cmake -Bbuild -S. -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake	
 	cmake --build build
 #<<<SAPPER SECTION END MAKEFILE-BUILD>>>
