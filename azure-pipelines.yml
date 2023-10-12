@@ -88,6 +88,11 @@ parameters:
       parameters: ""
       run_tests: false
       run_smoke_test: false
+    - name: observability-opentelemetry-tracing
+      parameters: >
+        -p OPENTELEMETRY_HOST='localhost' -p OPENTELEMETRY_PORT='4318' -p OPENTELEMETRY_PROPAGATION_TYPE='B3_SingleHeader'
+      run_tests: false
+      run_smoke_test: false
 steps:
 - task: GoTool@0
   inputs:
