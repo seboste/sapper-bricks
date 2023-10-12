@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 //<<<SAPPER SECTION BEGIN MAIN-INITIALIZATION>>>
 //<<<SAPPER SECTION END MAIN-INITIALIZATION>>>
 
-        const std::vector<std::string> headers_to_propagate = {
+        std::vector<std::string> headers_to_propagate = {
 //<<<SAPPER SECTION BEGIN MAIN-HEADERS-TO-PROPAGATE>>> //all entries must be lower case
 //<<<SAPPER SECTION END MAIN-HEADERS-TO-PROPAGATE>>>
                 "" //shouldn't do anything but avoids compiler errors when strings are added with a ,-suffix
