@@ -3,6 +3,9 @@
 #include <microservice-essentials/request/request-hook-factory.h>
 #include <microservice-essentials/request/request-hook.h>
 
+/**
+ * The tracing request hook is used to create opentelemetry spans for incoming and outgoing requests.
+*/
 class TracingRequestHook : public mse::RequestHook
 {
 public:    
@@ -22,6 +25,10 @@ public:
         mse::AutoRequestHookParameterRegistration<TracingRequestHook::Parameters, TracingRequestHook> auto_registration;
     };
 
+    /**
+     * RAII class that sets a global HTTP trace provider in the constructor and resets it to none in the destructor.
+     * During the lifetime of an instance, all opentelemetry traces are sent to the parameter's 'otel_url'.
+    */
     class TracerProvider
     {
     public:
