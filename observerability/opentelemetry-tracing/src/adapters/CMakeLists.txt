@@ -1,0 +1,3 @@
+#<<<SAPPER SECTION BEGIN MERGE ADAPTERS-SUBDIRECTORIES>>>
+add_subdirectory(observability-opentelemetry-tracing)
+#<<<SAPPER SECTION END MERGE ADAPTERS-SUBDIRECTORIES>>>

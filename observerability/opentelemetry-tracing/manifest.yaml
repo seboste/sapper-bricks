@@ -1,0 +1,14 @@
+---
+id : observability-opentelemetry-tracing
+version : 0.1.0
+kind: extension
+description : Request tracing with opentelemetry
+dependencies : [ base-hexagonal-skeleton ]
+parameters :
+  - name : OPENTELEMETRY_HOST
+    default : 'localhost'
+  - name : OPENTELEMETRY_PORT
+    default : '4318'
+  - name : OPENTELEMETRY_PROPAGATION_TYPE
+    default : 'B3_SingleHeader'
+  
