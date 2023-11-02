@@ -18,7 +18,7 @@ The *run* target in the `Makefile` depends on the *dbstart* target mentioned ear
 
 ## parameters
 
-  - **POSTGRES_CONNECTION_STRING**: Defines host, port, and credentials for connecting to the database in a [connection string format](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) format. Default: `postgres://postgres:my_password@localhost:5432`. 
+  - **POSTGRES_CONNECTION_STRING**: Defines host, port, and credentials for connecting to the database in a [connection string format](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). Default: `postgres://postgres:my_password@localhost:5432`. 
 
 
 ## next steps
