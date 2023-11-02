@@ -1,0 +1,9 @@
+---
+id : repo-redis
+version : 0.1.0
+kind: extension
+description : repo that stores entities in a redis db.
+dependencies : [ base-hexagonal-skeleton ]
+parameters :
+  - name : REDIS_CONNECTION_STRING
+    default : 'redis://default:my_password@localhost:6379/0'

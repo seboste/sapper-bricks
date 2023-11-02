@@ -93,6 +93,11 @@ parameters:
         -p OPENTELEMETRY_HOST='localhost' -p OPENTELEMETRY_PORT='4318' -p OPENTELEMETRY_PROPAGATION_TYPE='B3_SingleHeader'
       run_tests: false
       run_smoke_test: false
+    - name: repo-redis
+      parameters: >
+        -p REDIS_CONNECTION_STRING='redis://default:my_password@localhost:6379/0'
+      run_tests: false
+      run_smoke_test: false
 steps:
 - task: GoTool@0
   inputs:
